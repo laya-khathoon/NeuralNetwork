@@ -1,26 +1,26 @@
-# Neural Network from Scratch
+﻿# Neural Network from Scratch
 
-A simple feedforward neural network implemented from scratch using **Python and NumPy**, without relying on deep learning frameworks such as TensorFlow or PyTorch.
-
-This project demonstrates the fundamental concepts behind neural networks, including forward propagation, backpropagation, activation functions, loss calculation, and gradient descent.
+A feedforward neural network implemented from scratch using Python and NumPy, without TensorFlow or PyTorch. This educational project demonstrates neural network fundamentals and binary classification on both a logical dataset and a real-world dataset.
 
 ## Features
 
-- **Activation Functions:** Sigmoid and ReLU, including their derivatives.
-- **Dense Layer:** Fully connected layer with weight and bias initialization.
-- **Forward Propagation:** Computes predictions from input data.
-- **Backpropagation:** Calculates gradients to train the network.
-- **Binary Cross-Entropy:** Measures prediction error for binary classification.
-- **Gradient Descent:** Updates model parameters to reduce loss.
-- **Training Test:** Demonstrates learning using the OR logic dataset.
+- **Activation functions:** Sigmoid, ReLU, and their derivatives.
+- **Dense layers:** Weight and bias initialization, forward propagation, and backpropagation.
+- **Loss function:** Binary cross-entropy.
+- **Training:** Gradient descent with epoch-by-epoch loss history.
+- **Prediction:** Probability estimates and binary class predictions with a configurable threshold.
+- **Evaluation:** Accuracy, precision, recall, F1 score, and confusion-matrix counts.
+- **Visualization:** Training-loss graphs using Matplotlib.
+- **Real dataset:** Training and evaluation using scikit-learn's breast cancer dataset.
+- **Tests:** Individual test scripts for the main components.
 
-## Technologies Used
+## Technologies
 
 - Python
 - NumPy
 - Matplotlib
-- Scikit-learn
-- Streamlit
+- scikit-learn
+- pytest
 
 ## Project Structure
 
@@ -30,99 +30,157 @@ NeuralNetwork/
 ├── layers.py
 ├── losses.py
 ├── model.py
+├── predictor.py
+├── evaluation.py
+├── visualization.py
+├── demo_training_plot.py
+├── train_real_dataset.py
 ├── test_activations.py
 ├── test_layers.py
 ├── test_losses.py
 ├── test_training.py
-├── .gitignore
-└── README.md
+├── test_evaluation.py
+├── test_visualization.py
+├── test_training_history.py
+├── test_predictor.py
+├── README.md
+└── .gitignore
 ```
 
 ## Installation
 
-### 1. Clone the repository
+Clone the repository:
 
 ```bash
 git clone https://github.com/laya-khathoon/NeuralNetwork.git
 cd NeuralNetwork
 ```
 
-### 2. Create a virtual environment
-
-```bash
-python -m venv .venv
-```
-
-Activate it on Windows PowerShell:
+Create and activate a virtual environment on Windows PowerShell:
 
 ```powershell
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-### 3. Install dependencies
+Install dependencies:
 
-```bash
-python -m pip install numpy matplotlib scikit-learn streamlit
+```powershell
+python -m pip install numpy matplotlib scikit-learn pytest
 ```
 
 ## Run the Project
 
-Train the neural network on the OR logic dataset:
+### 1. Train on the OR logic dataset
 
-```bash
+```powershell
 python test_training.py
 ```
 
-The program displays the initial loss, training progress, final loss, and predictions.
+The script demonstrates learning the OR function using four binary input combinations.
 
-## Example Results
+### 2. Train on a real dataset
 
-The network was tested on the OR logic dataset:
+```powershell
+python train_real_dataset.py
+```
 
-| Input | Expected Output |
+This script loads the breast cancer dataset from scikit-learn, splits it into training and test sets, standardizes the features, trains the neural network, reports classification metrics, and saves a training-loss graph as `real_dataset_training_loss.png`.
+
+The dataset contains 569 samples and 30 features. The experiment is for educational purposes and is not intended for clinical diagnosis.
+
+### 3. Generate a training-loss plot
+
+```powershell
+python demo_training_plot.py
+```
+
+The graph is saved as `training_loss.png`.
+
+## Prediction API
+
+Use the `predict` function from `predictor.py` with a trained network and inputs that have the same feature order and preprocessing used during training:
+
+```python
+from predictor import predict
+
+# network must already be trained.
+# X must contain preprocessed input features.
+probabilities, predicted_classes = predict(
+    network,
+    X,
+    threshold=0.5
+)
+
+print(probabilities)
+print(predicted_classes)
+```
+
+The function returns probabilities and binary predictions. A probability greater than or equal to the threshold is classified as class 1; otherwise, it is classified as class 0.
+
+## Evaluation Metrics
+
+The `evaluation.py` module calculates:
+
+- Accuracy
+- Precision
+- Recall
+- F1 score
+- True positives, true negatives, false positives, and false negatives
+
+The meaning of the positive class depends on how the dataset encodes its target labels.
+
+## Testing
+
+Run individual test scripts:
+
+```powershell
+python test_activations.py
+python test_layers.py
+python test_losses.py
+python test_training.py
+python test_evaluation.py
+python test_visualization.py
+python test_training_history.py
+```
+
+Test the prediction module with pytest:
+
+```powershell
+python -m pytest test_predictor.py -v
+```
+
+## Example OR Dataset
+
+| Input | Expected output |
 |---|---:|
 | `[0, 0]` | 0 |
 | `[0, 1]` | 1 |
 | `[1, 0]` | 1 |
 | `[1, 1]` | 1 |
 
-In the recorded training run, the loss decreased from approximately **0.992725** to **0.004776**, and all four inputs were classified correctly using a threshold of 0.5.
-
-## Run the Tests
-
-Execute the individual test scripts:
-
-```bash
-python test_activations.py
-python test_layers.py
-python test_losses.py
-python test_training.py
-```
+In the recorded training run, the loss decreased from approximately 0.992725 to 0.004776, and all four inputs were classified correctly at a threshold of 0.5.
 
 ## Learning Objectives
 
-This project helps demonstrate:
-
-- How neural network layers process input data.
-- How activation functions introduce non-linearity.
-- How prediction errors are calculated.
-- How backpropagation computes gradients.
-- How gradient descent updates weights and biases.
-- How a neural network learns from training data.
+- Understand forward propagation and backpropagation.
+- Implement activation and loss functions.
+- Learn how gradients update model parameters.
+- Track training loss and evaluate predictions.
+- Apply a from-scratch model to a real dataset.
 
 ## Future Improvements
 
-- Add accuracy, precision, recall, and F1-score evaluation.
-- Visualize the training loss using Matplotlib.
-- Support additional activation functions and loss functions.
-- Add a Streamlit web interface for interactive predictions.
-- Extend the model to multiclass classification.
-- Add automated tests and improve documentation.
+- Add multiclass classification.
+- Add model saving and loading.
+- Build a Streamlit interface for interactive predictions.
+- Improve automated test discovery and coverage.
+- Add configurable network architectures and optimizers.
 
 ## Author
 
-**Laya Khathoon V**
+Laya Khathoon V
 
 ## License
 
-This project is available for educational and learning purposes. A formal open-source license can be added when required.
+For educational and learning purposes. Add an open-source license before distributing the project under specific license terms.
