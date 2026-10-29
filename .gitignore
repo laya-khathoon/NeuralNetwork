@@ -6,3 +6,5 @@ __pycache__/
 .streamlit/secrets.toml
 
 training_loss.png
+
+real_dataset_training_loss.png
