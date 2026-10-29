@@ -8,3 +8,6 @@ __pycache__/
 training_loss.png
 
 real_dataset_training_loss.png
+
+# Local app backups
+app_backup*.py
