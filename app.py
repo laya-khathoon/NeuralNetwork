@@ -120,6 +120,22 @@ st.markdown(
 
 
 
+    [data-testid="stExpandSidebarButton"],
+    [data-testid="stSidebarCollapseButton"] button {{
+        background: #2A2A3D !important;
+        border: 1px solid #9B8AFB !important;
+        border-radius: 8px !important;
+    }}
+
+    [data-testid="stExpandSidebarButton"],
+    [data-testid="stExpandSidebarButton"] *,
+    [data-testid="stSidebarCollapseButton"] *,
+    [data-testid="stSidebarCollapsedControl"] * {{
+        color: #F4F3FA !important;
+        fill: #F4F3FA !important;
+        opacity: 1 !important;
+    }}
+
     [data-testid="stHeader"] {{
 
         background: rgba(11,11,16,0.92);
