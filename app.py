@@ -423,7 +423,9 @@ st.markdown(
 
 
     .stTabs [data-baseweb="tab"],
-    .stTabs [data-baseweb="tab"] * {{
+    .stTabs [data-baseweb="tab"] *,
+    .stTabs [data-testid="stTab"],
+    .stTabs [data-testid="stTab"] * {{
 
         color: {MUTED} !important;
 
@@ -432,7 +434,9 @@ st.markdown(
 
 
     .stTabs [aria-selected="true"],
-    .stTabs [aria-selected="true"] * {{
+    .stTabs [aria-selected="true"] *,
+    .stTabs [data-testid="stTab"][aria-selected="true"],
+    .stTabs [data-testid="stTab"][aria-selected="true"] * {{
 
         color: {VIOLET} !important;
 
