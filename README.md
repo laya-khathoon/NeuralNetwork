@@ -1,6 +1,33 @@
-﻿# Neural Network from Scratch
+# Neural Network from Scratch
 
 A feedforward neural network implemented from scratch using Python and NumPy, without TensorFlow or PyTorch. This educational project demonstrates neural network fundamentals and binary classification on both a logical dataset and a real-world dataset.
+
+**Live demo:** [Neural Network Studio](https://neuralnetwork-l4tpqwmfgvw2sgamrfhmu9.streamlit.app/) - an interactive Streamlit app for configuring, training and inspecting the network in the browser.
+
+## Neural Network Studio (web app)
+
+`app.py` is a complete interactive playground built with Streamlit:
+
+- **Built-in datasets:** OR Logic, XOR Logic, and scikit-learn's breast cancer dataset, or upload your own CSV.
+- **Configurable architecture:** choose the number of hidden layers and neurons per layer; hidden layers use ReLU, the output layer uses sigmoid.
+- **Training controls:** epochs, learning rate, test-split fraction and random seed, with a live progress indicator.
+- **Results:** accuracy, precision, recall and F1 on the held-out test set, a confusion matrix, and the training-loss curve.
+- **Inspection tools:** a network architecture diagram, a layer inspector (neurons, activation, weight and bias counts), a prediction explorer for individual test samples, and a dataset preview with CSV export.
+
+### Architecture view
+
+![Neural Network Studio - architecture view](screenshots/nn-architecture.jpg)
+
+### Training results on the breast cancer dataset
+
+![Neural Network Studio - training results](screenshots/nn-training.jpg)
+
+Run it locally:
+
+```powershell
+python -m pip install -r requirements.txt
+streamlit run app.py
+```
 
 ## Features
 
@@ -12,6 +39,7 @@ A feedforward neural network implemented from scratch using Python and NumPy, wi
 - **Evaluation:** Accuracy, precision, recall, F1 score, and confusion-matrix counts.
 - **Visualization:** Training-loss graphs using Matplotlib.
 - **Real dataset:** Training and evaluation using scikit-learn's breast cancer dataset.
+- **Web app:** Interactive Streamlit interface (see above).
 - **Tests:** Individual test scripts for the main components.
 
 ## Technologies
@@ -20,12 +48,14 @@ A feedforward neural network implemented from scratch using Python and NumPy, wi
 - NumPy
 - Matplotlib
 - scikit-learn
+- Streamlit
 - pytest
 
 ## Project Structure
 
 ```text
 NeuralNetwork/
+├── app.py                    # Streamlit web app (Neural Network Studio)
 ├── activations.py
 ├── layers.py
 ├── losses.py
@@ -43,6 +73,8 @@ NeuralNetwork/
 ├── test_visualization.py
 ├── test_training_history.py
 ├── test_predictor.py
+├── screenshots/              # App screenshots used in this README
+├── requirements.txt
 ├── README.md
 └── .gitignore
 ```
@@ -66,7 +98,7 @@ python -m venv .venv
 Install dependencies:
 
 ```powershell
-python -m pip install numpy matplotlib scikit-learn pytest
+python -m pip install -r requirements.txt
 ```
 
 ## Run the Project
@@ -89,6 +121,8 @@ This script loads the breast cancer dataset from scikit-learn, splits it into tr
 
 The dataset contains 569 samples and 30 features. The experiment is for educational purposes and is not intended for clinical diagnosis.
 
+Latest recorded run: accuracy 0.965, precision 0.972, recall 0.972, F1 score 0.972 on the held-out test split (70 true positives, 40 true negatives, 2 false positives, 2 false negatives).
+
 ### 3. Generate a training-loss plot
 
 ```powershell
@@ -96,6 +130,12 @@ python demo_training_plot.py
 ```
 
 The graph is saved as `training_loss.png`.
+
+### 4. Launch the web app
+
+```powershell
+streamlit run app.py
+```
 
 ## Prediction API
 
@@ -172,15 +212,3 @@ In the recorded training run, the loss decreased from approximately 0.992725 to 
 ## Future Improvements
 
 - Add multiclass classification.
-- Add model saving and loading.
-- Build a Streamlit interface for interactive predictions.
-- Improve automated test discovery and coverage.
-- Add configurable network architectures and optimizers.
-
-## Author
-
-Laya Khathoon V
-
-## License
-
-For educational and learning purposes. Add an open-source license before distributing the project under specific license terms.
