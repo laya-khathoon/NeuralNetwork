@@ -406,7 +406,7 @@ st.markdown(
 
 
 
-    .stNumberInput input, .stTextInput input, .stSelectbox input {{
+    .stNumberInput input, .stTextInput input {{
 
         color: {TEXT};
 
@@ -422,17 +422,27 @@ st.markdown(
 
 
 
-    .stTabs [data-baseweb="tab"] p {{
+    .stTabs [data-baseweb="tab"],
+    .stTabs [data-baseweb="tab"] * {{
 
-        color: {MUTED};
+        color: {MUTED} !important;
 
     }}
 
 
 
-    .stTabs [aria-selected="true"] p {{
+    .stTabs [aria-selected="true"],
+    .stTabs [aria-selected="true"] * {{
 
-        color: {VIOLET};
+        color: {VIOLET} !important;
+
+    }}
+
+
+
+    [data-testid="stCaptionContainer"] {{
+
+        color: #C9C9D6;
 
     }}
 
