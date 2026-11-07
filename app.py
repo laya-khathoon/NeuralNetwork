@@ -960,25 +960,21 @@ def render_network_diagram(layer_sizes):
 
 def metric_card(label, value, note=""):
 
-    st.markdown(
+    card_html = (
 
-        f"""
+        '<div class="metric-card">'
 
-        <div class="metric-card">
+        f'<div class="metric-label">{html.escape(label)}</div>'
 
-            <div class="metric-label">{html.escape(label)}</div>
+        f'<div class="metric-value metric-accent">{html.escape(str(value))}</div>'
 
-            <div class="metric-value metric-accent">{html.escape(str(value))}</div>
+        f'<div class="subtle" style="font-size:11px">{html.escape(note)}</div>'
 
-            <div class="subtle" style="font-size:11px">{html.escape(note)}</div>
-
-        </div>
-
-        """,
-
-        unsafe_allow_html=True,
+        '</div>'
 
     )
+
+    st.markdown(card_html, unsafe_allow_html=True)
 
 
 
@@ -1388,61 +1384,57 @@ with tab_design:
 
 
 
-        st.markdown(
+        layer_panel_html = (
 
-            f"""
+            '<div class="panel">'
 
-            <div class="panel">
+            '<div class="panel-label">SELECTED LAYER</div>'
 
-                <div class="panel-label">SELECTED LAYER</div>
+            '<div style="font-size:22px;font-weight:800">'
 
-                <div style="font-size:22px;font-weight:800">
+            f'{html.escape(layer_options[selected_layer].split(" · ")[1])}'
 
-                    {html.escape(layer_options[selected_layer].split(" · ")[1])}
+            '</div>'
 
-                </div>
+            '<hr style="border-color:#282838">'
 
-                <hr style="border-color:#282838">
+            '<div style="display:flex;justify-content:space-between;padding:7px 0">'
 
-                <div style="display:flex;justify-content:space-between;padding:7px 0">
+            '<span style="color:#9999B1">Neurons</span>'
 
-                    <span style="color:#9999B1">Neurons</span>
+            f'<b>{selected_neurons}</b>'
 
-                    <b>{selected_neurons}</b>
+            '</div>'
 
-                </div>
+            '<div style="display:flex;justify-content:space-between;padding:7px 0">'
 
-                <div style="display:flex;justify-content:space-between;padding:7px 0">
+            '<span style="color:#9999B1">Activation</span>'
 
-                    <span style="color:#9999B1">Activation</span>
+            f'<b>{activation}</b>'
 
-                    <b>{activation}</b>
+            '</div>'
 
-                </div>
+            '<div style="display:flex;justify-content:space-between;padding:7px 0">'
 
-                <div style="display:flex;justify-content:space-between;padding:7px 0">
+            '<span style="color:#9999B1">Incoming weights</span>'
 
-                    <span style="color:#9999B1">Incoming weights</span>
+            f'<b>{incoming_weights}</b>'
 
-                    <b>{incoming_weights}</b>
+            '</div>'
 
-                </div>
+            '<div style="display:flex;justify-content:space-between;padding:7px 0">'
 
-                <div style="display:flex;justify-content:space-between;padding:7px 0">
+            '<span style="color:#9999B1">Bias parameters</span>'
 
-                    <span style="color:#9999B1">Bias parameters</span>
+            f'<b>{biases}</b>'
 
-                    <b>{biases}</b>
+            '</div>'
 
-                </div>
-
-            </div>
-
-            """,
-
-            unsafe_allow_html=True,
+            '</div>'
 
         )
+
+        st.markdown(layer_panel_html, unsafe_allow_html=True)
 
 
 
