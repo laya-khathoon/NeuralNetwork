@@ -22,6 +22,8 @@ A feedforward neural network implemented from scratch using Python and NumPy, wi
 
 ![Neural Network Studio - training results](screenshots/nn-training.jpg)
 
+The run shown above uses the app's configuration (30-16-8-1 layers, 300 epochs, learning rate 0.01) and reached F1 0.979 on 114 held-out samples. Results vary with the chosen architecture and hyperparameters; the command-line script `train_real_dataset.py` (below) reports its own recorded metrics.
+
 Run it locally:
 
 ```powershell
