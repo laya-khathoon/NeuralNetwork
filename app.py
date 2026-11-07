@@ -392,6 +392,50 @@ st.markdown(
 
     }}
 
+
+
+    [data-testid="stWidgetLabel"] p,
+    [data-testid="stWidgetLabel"] span,
+    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"],
+    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
+    .stRadio [data-testid="stMarkdownContainer"] p {{
+
+        color: #C9C9D6;
+
+    }}
+
+
+
+    .stNumberInput input, .stTextInput input, .stSelectbox input {{
+
+        color: {TEXT};
+
+    }}
+
+
+
+    [data-testid="stTickBarMin"], [data-testid="stTickBarMax"] {{
+
+        color: {MUTED};
+
+    }}
+
+
+
+    .stTabs [data-baseweb="tab"] p {{
+
+        color: {MUTED};
+
+    }}
+
+
+
+    .stTabs [aria-selected="true"] p {{
+
+        color: {VIOLET};
+
+    }}
+
     </style>
 
     """,
