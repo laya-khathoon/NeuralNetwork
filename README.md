@@ -68,12 +68,16 @@ NeuralNetwork/
 ├── demo_training_plot.py
 ├── train_real_dataset.py
 ├── test_activations.py
+├── test_activation_stability.py
 ├── test_layers.py
+├── test_dense_gradients.py
 ├── test_losses.py
+├── test_loss_boundaries.py
 ├── test_training.py
-├── test_evaluation.py
-├── test_visualization.py
 ├── test_training_history.py
+├── test_evaluation.py
+├── test_metric_boundaries.py
+├── test_visualization.py
 ├── test_predictor.py
 ├── screenshots/              # App screenshots used in this README
 ├── requirements.txt
