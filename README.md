@@ -61,7 +61,8 @@ NeuralNetwork/
 ├── activations.py
 ├── layers.py
 ├── losses.py
-├── model.py
+├── model.py                  # NeuralNetwork class, with summary() for architecture/parameter counts
+├── ARCHITECTURE.md           # How forward, backward and the update flow through the layers
 ├── predictor.py
 ├── evaluation.py
 ├── visualization.py
@@ -79,6 +80,7 @@ NeuralNetwork/
 ├── test_metric_boundaries.py
 ├── test_visualization.py
 ├── test_predictor.py
+├── test_model_summary.py
 ├── screenshots/              # App screenshots used in this README
 ├── requirements.txt
 ├── README.md
