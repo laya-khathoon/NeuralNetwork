@@ -57,6 +57,25 @@ class NeuralNetwork:
         self.hidden_layer.update_parameters(learning_rate)
         self.output_layer.update_parameters(learning_rate)
 
+    def summary(self):
+        """Return a text summary of the architecture and parameter counts."""
+        lines = ["NeuralNetwork summary", "----------------------"]
+        total = 0
+        for label, layer in (
+            ("Hidden layer", self.hidden_layer),
+            ("Output layer", self.output_layer),
+        ):
+            weights = int(layer.weights.size)
+            biases = int(layer.biases.size)
+            params = weights + biases
+            total += params
+            lines.append(
+                f"{label}: {layer.weights.shape[0]} -> "
+                f"{layer.weights.shape[1]} neurons, {params} parameters"
+            )
+        lines.append(f"Total trainable parameters: {total}")
+        return "\n".join(lines)
+
     def train_step(self, inputs, y_true, learning_rate=0.1):
         """Perform one training step and return its loss."""
         predictions = self.forward(inputs)
