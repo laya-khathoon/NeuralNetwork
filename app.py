@@ -1122,7 +1122,13 @@ with st.sidebar:
 
             try:
 
-                frame = pd.read_csv(uploaded)
+                if uploaded.size > 5 * 1024 * 1024:
+                    raise ValueError("CSV is too large. Choose a file under 5 MB.")
+                frame = pd.read_csv(uploaded, nrows=10001)
+                if len(frame) > 10000 or len(frame.columns) > 100:
+                    raise ValueError("Use at most 10,000 rows and 100 columns.")
+                if frame.empty or len(frame.columns) < 2:
+                    raise ValueError("Include feature columns, a target column and data rows.")
 
                 dataset_name = uploaded.name
 
