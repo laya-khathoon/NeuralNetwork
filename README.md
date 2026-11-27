@@ -198,6 +198,12 @@ Test the prediction module with pytest:
 python -m pytest test_predictor.py -v
 ```
 
+Run every test file at once with pytest:
+
+```powershell
+python -m pytest -q
+```
+
 ## Example OR Dataset
 
 | Input | Expected output |
